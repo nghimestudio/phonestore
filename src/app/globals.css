@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0a0c10;
+  --ink-soft: #1a1f2a;
+  --paper: #f3f4f6;
+  --paper-deep: #e8eaee;
+  --surface: #ffffff;
+  --muted: #5c6575;
+  --line: #d8dce3;
+  --accent: #0f766e;
+  --accent-hover: #0d9488;
+  --accent-soft: #ccfbf1;
+  --danger: #be123c;
+  --background: var(--paper);
+  --foreground: var(--ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-syne);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 0% -10%, rgba(15, 118, 110, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(26, 31, 42, 0.05), transparent),
+    linear-gradient(180deg, #f7f8fa 0%, #eef0f4 100%);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes image-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-delay-1 {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.animate-rise-delay-2 {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+.animate-rise-delay-3 {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.36s both;
+}
+
+.animate-fade {
+  animation: fade-in 1s ease both;
+}
+
+.hero-image {
+  animation: image-zoom 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.product-grid > * {
+  animation: rise-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.product-grid > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.product-grid > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.product-grid > *:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.product-grid > *:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.product-grid > *:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.product-grid > *:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-rise-delay-1,
+  .animate-rise-delay-2,
+  .animate-rise-delay-3,
+  .animate-fade,
+  .hero-image,
+  .product-grid > * {
+    animation: none;
+  }
 }
